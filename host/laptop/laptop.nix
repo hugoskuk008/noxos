@@ -9,8 +9,8 @@
  ];
 
 boot.loader.systemd-boot.enable = true;
-boot.loader.efi.cianTouchEfiVariables = true;
-boot.kernel.Packages =pkgs.linuxPackages_latest;
+boot.loader.efi.canTouchEfiVariables = true;
+boot.kernelPackages = pkgs.linuxPackages_latest;
 
 networking.networkmanager.enable = true;
 

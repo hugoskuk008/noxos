@@ -64,7 +64,7 @@ boot.extraModprobeConfig = ''
 
 };
 
-specialisation.igpu.only.configuration = {
+specialisation.igpu.configuration = {
 
 
 boot.initrd.kernelModules = [ "amdgpu" ];
