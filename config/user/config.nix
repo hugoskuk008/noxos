@@ -26,8 +26,8 @@ in
 
   programs.git = {
     enable = true;
-    userName  = "you";
-    userEmail = "you@example.com";
+    userName  = "hugoskuk008";
+    userEmail = "jackansen2007@proton.me";
   };
 
   programs.fish.enable = true;
