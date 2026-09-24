@@ -27,6 +27,10 @@ networking.networkmanager.enable = true;
      pulse.enable = true;
    };
 
+hardware.graphics = {
+  enable = true;
+  enable32Bit = true;  # This is key! Installs 32-bit graphics drivers and libraries
+};
 
 	nix.settings.experimental-features = ["nix-command" "flakes" ];
 

@@ -16,23 +16,47 @@ in
       default = false;
     };
 
-    hyprland = {
-      packages = mkOption {
-        type = types.listOf types.package;
-        default = [ ];
-      };
-      bar = mkOption {
-        type = types.submodule {
-          options = {
-            package    = mkOption { type = types.package; };
-            configFile = mkOption { type = types.nullOr types.path; default = null; };
-            launch     = mkOption { type = types.nullOr types.str;  default = null; };
-          };
+  hyprland = {
+  hyprland = mkOption {
+    type = types.submodule {
+      options = {
+        hypr-packages = mkOption {
+          type = types.listOf types.package;
+          default = [ ];
         };
-        default = { };
+
+        configFile = mkOption {
+          type = types.nullOr types.path;
+          default = null;
+        };
       };
     };
 
+    default = { };
+  };
+
+  bar = mkOption {
+    type = types.submodule {
+      options = {
+        package = mkOption {
+          type = types.package;
+        };
+
+        configFile = mkOption {
+          type = types.nullOr types.path;
+          default = null;
+        };
+
+        launch = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+        };
+      };
+    };
+
+    default = { };
+  };
+};
     gnome.packages = mkOption {
       type = types.listOf types.package;
       default = [ ];

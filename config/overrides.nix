@@ -8,7 +8,21 @@ in
   # user-base.packages        = [ pkgs.discord ];
   # myWm.hyprland.packages = [ pkgs.spotify ];
   # myWm.gnome.packages    = [ pkgs.obsidian ];
-
+  home.packages = with pkgs; [
+tuned
+neovim
+ripgrep
+nil
+nixpkgs-fmt
+nodejs
+gcc
+vesktop
+localsend 
+thunderbird
+steam
+vlc
+powertop
+];
   # Replace a base list entirely
   # myBase.packages = mkForce (with pkgs; [ ripgrep fd jq ]);
 

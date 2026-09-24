@@ -38,6 +38,10 @@ in
 
 
 # conf.nix
+hardware.graphics = {
+  enable = true;
+  enable32Bit = true;  # This is key! Installs 32-bit graphics drivers and libraries
+};
 
   users.users.admin = {
     isNormalUser = true;
@@ -45,5 +49,5 @@ in
     extraGroups = [ "wheel" "networkmanager" ];   # adjust as needed
   };
 
-
+system.stateVersion = "26.05"; 
 }

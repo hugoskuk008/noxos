@@ -3,39 +3,40 @@
 let
   cfg  = config.myWm;
   base = config.user-base;
-  inherit (lib) mkIf mkDefault optionals optionalAttrs;
+
+  inherit (lib) mkIf mkDefault;
 in
 {
   config = mkIf (cfg.selection == "hyprland") {
-    myWm.hyprland.packages = with pkgs; [
-      waybar 
-      rofi 
-      hyprpaper
-    ];
+    myWm.hyprland.hyprland = {
+      hypr-packages = with pkgs; [
+        waybar
+        rofi
+        awww
+        waypaper
+      ];
+
+      configFile = ./hyprland/hyprland/hypr;
+    };
 
     myWm.hyprland.bar = mkDefault {
       package    = pkgs.waybar;
-      configFile = ./waybar-config.jsonc;
+      configFile = ./hyprland/waybar;
       launch     = "waybar";
     };
 
-    home.packages = cfg.hyprland.packages ++ [ cfg.hyprland.bar.package ];
+    home.packages =
+      cfg.hyprland.hyprland.hypr-packages
+      ++ [ cfg.hyprland.bar.package ];
 
     wayland.windowManager.hyprland = {
-      enable = true;
-      settings = {
-        "$mod"      = "SUPER";
-        "exec-once" = optionals (cfg.hyprland.bar.launch != null)
-                        [ cfg.hyprland.bar.launch ];
-        bind = [
-          "$mod, Return, exec, ${base.terminal.command}"
-          "$mod, D, exec, ${base.launcher.command}"
-        ];
-      };
+      enable = false;
+      systemd.enable = false;
     };
 
-    xdg.configFile = optionalAttrs (cfg.hyprland.bar.configFile != null) {
-      "waybar/config".source = cfg.hyprland.bar.configFile;
+    xdg.configFile = {
+      "hypr".source = cfg.hyprland.hyprland.configFile;
+      "waybar".source = cfg.hyprland.bar.configFile;
     };
 
     home.sessionVariables = {

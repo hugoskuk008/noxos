@@ -35,7 +35,6 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.admin = import ./config/home.nix;
         }
       ];
     };
