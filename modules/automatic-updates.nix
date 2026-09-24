@@ -1,38 +1,19 @@
-{config, lib, pkgs, ...}:
+{ config, lib, ... }:
 
+let
+  cfg = config.automaticUpdates;
+  inherit (lib) mkEnableOption mkIf;
+in
 {
+  options.automaticUpdates.enable =
+    mkEnableOption "automatic system updates";
 
-options = {
- automatic-updates.enable = lib.mkEnableOption "Enable automatic system updates";};
-
-  config = lib.mkIf config.automatic-updates.enable {
-
-  system.autoUpgrade = {
-    enable = true;
-    dates = "weekly";
-    randomizedDelaySec = "45min";
-    allowReboot = false;
+  config = mkIf cfg.enable {
+    system.autoUpgrade = {
+      enable             = true;
+      dates              = "weekly";
+      randomizedDelaySec = "45min";
+      allowReboot        = false;
+    };
   };
-
-
-  };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -22,8 +22,9 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./host/laptop/laptop.nix
-        ./modules/temp.nix
         ./modules/local-nfs.nix
+        ./conf.nix
+        ./override.nix
           {nixpkgs.config.allowUnfree = true;}
         # gaze: imports the module and turns it on
         gaze.nixosModules.default

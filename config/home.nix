@@ -14,12 +14,7 @@
 
 home.file.".config/nvim".source = ./nvim;
 
-myWm = {
 
-enable = true;
-selection = "gnome";
-
-};
 home.packages = with pkgs; [
 tuned
 neovim
